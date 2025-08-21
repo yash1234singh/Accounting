@@ -1,0 +1,22 @@
+{
+  "instances": [
+    {
+      "tag": "eth0",
+      "namespace": "mynamespace", 
+      "interface": "eth0",
+      "output_file": "eth0_traffic_stats.json",
+      "whitelist_file": "eth0_whitelist.json",
+      "xdp": false,
+      "debug": true
+    },
+    {
+      "tag": "host",
+      "namespace": null,
+      "interface": "eth0",
+      "output_file": "host_traffic_stats.json", 
+      "whitelist_file": "host_whitelist.json",
+      "xdp": false,
+      "debug": true
+    }
+  ]
+}

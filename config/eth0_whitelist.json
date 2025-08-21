@@ -1,0 +1,14 @@
+{
+    "whitelist": {
+        "category2": {
+            "enabled": true,
+            "ips": ["8.8.8.8"],
+            "cidrs": []
+          },
+      "category1": {
+        "enabled": true,
+        "ips": ["10.0.0.1"],
+        "cidrs": []
+      }
+    }
+  }
