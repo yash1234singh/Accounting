@@ -346,45 +346,44 @@ accounting.cleanup()
 
 ```mermaid
 flowchart TD
-    A[main()] --> B[parse_arguments()]
-    B --> C[check_root_privileges()]
-    C --> D[validate_interface()]
-    D --> E[create_NetworkAccountingModule()]
-    
-    E --> F[load_bpf_program()]
-    F --> G[BPFProgramManager.load_functions()]
-    G --> H[ProgramAttacher.attach_programs()]
-    H --> I[get_maps()]
-    I --> J[populate_whitelist_map()]
-    
-    J --> K[run_monitoring()]
-    K --> L[monitoring_loop]
-    L --> M[StatsCollector.collect_stats()]
-    M --> N[OutputWriter.write_stats()]
-    N --> O[OutputWriter.display_console()]
-    O --> P[sleep(5)]
+    A(["Main()"])
+    A --> B{"parse_arguments()"}
+    B --> C["check_root_privileges()"]
+    C --> D["validate_interface()"]
+    D --> E["create_NetworkAccountingModule()"]
+    E --> F["load_bpf_program()"]
+    F --> G["BPFProgramManager.load_functions()"]
+    G --> H["ProgramAttacher.attach_programs()"]
+    H --> I["get_maps()"]
+    I --> J["populate_whitelist_map()"]
+    J --> K["run_monitoring()"]
+    K --> L["monitoring_loop"]
+    L --> M["StatsCollector.collect_stats()"]
+    M --> N["OutputWriter.write_stats()"]
+    N --> O["OutputWriter.display_console()"]
+    O --> P["sleep(5)"]
     P --> L
-    
-    L --> Q[SIGINT/SIGTERM]
-    Q --> R[ProgramAttacher.cleanup()]
-    R --> S[exit]
+    L --> Q["SIGINT/SIGTERM"]
+    Q --> R["ProgramAttacher.cleanup()"]
+    R --> S["exit"]
 ```
 
 #### 2. Multi-Instance Mode (multi_network_accounting.py)
 
 ```mermaid
 flowchart TD
-    A[MultiNetworkAccountingManager.run()] --> B[load_config()]
-    B --> C[start_all_instances()]
+    A(["MultiNetworkAccountingManager"])
+    A --> B[load_config]
+    B --> C[start_all_instances]
     C --> D[For each instance]
-    D --> E[start_instance() - subprocess]
+    D --> E[start_instance - subprocess]
     E --> F[network_accounting.py process]
     
-    F --> G[monitor_instances()]
-    G --> H[check_instance_health()]
-    H --> I[display_summary()]
-    I --> J[read_summary_from_file()]
-    J --> K[sleep(5)]
+    F --> G[monitor_instances]
+    G --> H[check_instance_health]
+    H --> I[display_summary]
+    I --> J[read_summary_from_file]
+    J --> K[sleep 5]
     K --> G
     
     G --> L[SIGINT/stop_all]
